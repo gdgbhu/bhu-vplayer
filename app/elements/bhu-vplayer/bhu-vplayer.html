@@ -1,0 +1,184 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/core-drawer-panel/core-drawer-panel.html">
+<link rel="import" href="../../../bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="../../../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../bower_components/core-menu/core-menu.html">
+<link rel="import" href="../../../bower_components/core-menu/core-submenu.html">
+<link rel="import" href="../../../bower_components/core-item/core-item.html">
+<link rel="import" href="../../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../../../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-shadow/paper-shadow.html">
+<link rel="import" href="../../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../../bower_components/google-signin/google-signin.html">
+<link rel="import" href="../../../bower_components/google-signin/google-signin-aware.html">
+<link rel="import" href="../../../bower_components/google-apis/google-apis.html">
+<link rel="import" href="../../../bower_components/google-youtube/google-youtube.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/core-list/core-list.html">
+<link rel="import" href="../../../bower_components/core-pages/core-pages.html">
+<link rel="import" href="routes.html">
+
+<polymer-element name="bhu-vplayer" attributes="">
+  <template>
+    <link rel="stylesheet" href="bhu-vplayer.css">
+
+    <core-drawer-panel responsiveWidth="600px">
+
+      <core-header-panel drawer>
+        <core-toolbar>GDG BHU</core-toolbar>
+        <div hidden?="{{ logout }}">
+          <core-menu>
+            <template if="{{ profiledata }}">
+              <p>
+                <img src="{{ userimageurl }}" style="display: block; margin: 1em auto; border-radius: 32px; height: 64px; width: 64px;">
+                Welcome, <strong>{{ username }}</strong><br>
+                <span style="color: #4184F3; font-size: 0.85em;">{{ useremail }}</span>
+              </p>
+            </template>
+            <core-submenu icon="list" label="Playlists">
+              <template repeat="{{ playlist in playlistdata }}">
+                <core-item>
+                  <p>{{ playlist.snippet.title }}</p>
+                </core-item>                
+              </template>
+            </core-submenu>
+            <core-submenu icon="stars" label="Subscriptions">
+              <template repeat="{{ subscription in subscriptiondata }}">
+                <core-item>
+                  <p>{{ subscription.snippet.title }}</p>
+                </core-item>                
+              </template>
+              <template if="{{ subscriptiondata.length > 1 }}">
+                <core-item>
+                  <p>...</p>
+                </core-item>
+              </template>
+            </core-submenu>
+          </core-menu>
+        </div>
+        <div hidden?="{{ login }}">
+          <core-item>
+            <google-signin clientId="{{ clientId }}" scopes="https://www.googleapis.com/auth/youtube" theme="dark" width="standard" height="short"></google-signin>
+          </core-item>
+        </div>
+        
+      </core-header-panel>
+
+      <core-header-panel main id="demoscroll">
+        <core-toolbar>
+          <paper-icon-button icon="menu" core-drawer-toggle></paper-icon-button>
+          <core-icon icon="polymer"></core-icon>
+          <span class="flex">VPlayer</span>
+          <paper-fab icon="search" on-click="{{ showSearchField }}" id="searchbtn"></paper-fab>
+          <div hidden?="{{ logout }}">
+            <paper-icon-button icon="highlight-remove" on-click="{{ logoutUser }}" class="logoutBtn"></paper-icon-button>
+          </div>
+          <div hidden?="{{ login }}">
+            <google-signin clientId="{{ clientId }}" scopes="https://www.googleapis.com/auth/youtube" theme="dark" width="iconOnly" height="short"></google-signin>
+          </div>
+        </core-toolbar>
+
+        <div class="content">
+            <paper-input id="newSearchField" 
+                floatingLabel
+                on-change="{{ searchVideo }}"
+                value="{{ newVideoSearchValue }}"
+                label="Search Videos"></paper-input>
+
+        <div class='loader loader--audioWave' id="loader"></div>
+
+          <more-route-selector selectedParams="{{params}}">
+            <core-pages>
+              <section route="vlist">
+                
+                <div layout center vertical id="cards">
+                  <div hidden?="{{ login }}">
+                      <paper-card disableSwipe>
+                        <div content class="card-h5">
+                          <h5><core-icon icon="error"></core-icon> Attention: Signin Required!</h5>
+                          <div class="small-txt">Signin with your Google account by clicking the <img src="../../assets/img/google-signin.png" height="16" width="16"> button above to use <strong>VPlayer</strong>.</div>
+                        </div>
+                      </paper-card>
+                  </div>
+
+                  <template repeat="{{ video in videoData }}" if="{{ login }}">
+                      <paper-card headingColor="#e9005f" image="{{ video.snippet.thumbnails.standard.url ? video.snippet.thumbnails.standard.url : video.snippet.thumbnails.medium.url }}" disableSwipe>
+                        <div content class="card-h5">
+                          <template if="{{ video.id | isObjectVal }}">
+                            <h5><a href="{{ urlFor('vplayer', {vId: video.id.videoId}) }}" on-tap="{{ loadVideoById }}">{{ video.snippet.title }}</a></h5>                            
+                          </template>
+                          <template if="{{ video.id | isStringVal }}">
+                            <h5><a href="{{ urlFor('vplayer', {vId: video.id}) }}" on-tap="{{ loadVideoById }}">{{ video.snippet.title }}</a></h5>
+                          </template>
+                          <div class="small-txt">{{ video.snippet.description ? video.snippet.description : 'No Description Found'  | trim_words }}</div>
+                        </div>
+                        <div actions>
+                          <div class="small-txt">By <span style="font-weight: bold;">{{ video.snippet.channelTitle }}</span> </div>
+                        </div>
+                      </paper-card>
+                  </template>
+
+                </div>
+
+              </section>
+
+              <section route="vplayer">
+                  <template if="{{ singlevideodata.snippet && params.vId != '' }}">
+                      <paper-card disableSwipe>
+                        <div content class="card-h5-single">
+
+                          <google-youtube 
+                              videoid="{{ params.vId }}"
+                              rel="0"
+                              controls="2"
+                              color="white"
+                              showinfo="0"
+                              theme="dark"
+                              modestbranding="1"
+                              iv_load_policy="3"
+                              fluid="true">
+                          </google-youtube>
+
+                          <h5>{{ singlevideodata.snippet.title }}</h5>
+                          <div class="small-txt">{{ singlevideodata.snippet.description ? singlevideodata.snippet.description : 'No Description Found'  | trim_words }}</div>
+                        </div>
+                        <template if="{{ singlevideodata.statistics }}">
+                          <div actions class="core-icon-style">
+                            <core-icon icon="pageview"></core-icon> <strong>{{ singlevideodata.statistics.viewCount | shortenLargeNumber }}</strong>
+                            <core-icon-button icon="thumb-up" on-tap="{{ likeVideo }}" style="color: #4184F3;"></core-icon-button> <strong>{{ singlevideodata.statistics.likeCount | shortenLargeNumber }}</strong>
+                            <core-icon-button icon="thumb-down" on-tap="{{ dislikeVideo }}" style="color: #CC181E;"></core-icon-button> <strong>{{ singlevideodata.statistics.dislikeCount | shortenLargeNumber }}</strong>
+                          </div>
+                      </template>
+                  </paper-card>
+                  </template>
+
+              </section>
+
+            </core-pages>
+          </more-route-selector>
+
+      </div>
+
+      </core-header-panel>
+
+    </core-drawer-panel>
+
+    <google-api-loader id="yt" name="youtube" version="v3"></google-api-loader>
+
+    <google-signin-aware
+          scopes="https://www.googleapis.com/auth/youtube"
+          on-google-signin-aware-success="{{signIn}}"
+          on-google-signin-aware-signed-out="{{signOut}}"></google-signin-aware>
+  </template>
+
+  <script src="bhu-vplayer.js"></script>
+</polymer-element>

@@ -1,0 +1,51 @@
+{
+  "name": "bhu-vplayer",
+  "version": "0.0.0",
+  "authors": [
+    "Mfawa Alfred Onen <muffycompoqm@gmail.com>"
+  ],
+  "description": "A Sample Youtube Video Player created with Polymer by GDG Bingham University",
+  "keywords": [
+    "polymer",
+    "gdg",
+    "\"gdg",
+    "bingham",
+    "university\""
+  ],
+  "license": "MIT",
+  "homepage": "http://bhu.gdg.ng",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#0.5",
+    "core-elements": "Polymer/core-elements#0.5",
+    "paper-elements": "Polymer/paper-elements#0.5",
+    "google-youtube": "GoogleWebComponents/google-youtube#~1.0.6",
+    "google-signin": "GoogleWebComponents/google-signin#~0.3.0",
+    "swipeable-card": "PolymerLabs/swipeable-card#~0.5.0",
+    "paper-card": "PolymerLabs/paper-card",
+    "more-routing": "PolymerLabs/more-routing#0.5"
+  },
+  "resolutions": {
+    "swipeable-card": "~0.5.0",
+    "polymer": "^0.5",
+    "core-icon-button": "^0.5",
+    "core-icons": "^0.5",
+    "core-meta": "^0.5",
+    "core-icon": "^0.5",
+    "font-roboto": "^0.5",
+    "paper-ripple": "^0.5",
+    "paper-shadow": "^0.5",
+    "paper-button": "^0.5",
+    "webcomponentsjs": "^0.5",
+    "core-focusable": "^0.5",
+    "core-iconset-svg": "^0.5",
+    "core-a11y-keys": "^0.5",
+    "core-iconset": "^0.5"
+  }
+}

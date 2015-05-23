@@ -1,0 +1,182 @@
+:host {
+  display: block;
+  font-family: 'Helvetica Neue', Helvetica, Arial;
+}
+
+[drawer] {
+  background-color: #fff;
+}
+
+[main] > div {
+  padding: 2em;
+}
+
+[drawer] > core-item {
+  padding: 1em;
+}
+
+[main] {
+  height: 100%;
+  background-color: #F1F1F1;
+}
+
+[drawer] core-toolbar {
+  background-color: #CC181E;
+  color: #fff;
+}
+
+[main] core-toolbar {
+  /*background-color: #32b578;*/
+  background-color: #FFF;
+  color: #444;
+}
+
+paper-fab {
+  background-color: #da4336;
+  position: absolute !important;
+  bottom: -27px;
+  right: 1em;
+  z-index: 10;
+}
+
+/* Core Submenu Styling*/
+core-submenu::shadow #submenu {
+  margin-left: 20px;
+}
+
+core-submenu::shadow > #submenuItem {
+  color: #CC181E;
+}
+
+polyfill-next-selector { content: 'core-submenu > #submenu > core-item'; }
+core-submenu > core-item {
+  color: #4184F3;
+  white-space: normal;
+  font-size: 0.8em;
+}
+core-item::shadow > #icon {
+	color: #444;
+	margin-right: 0;
+}
+
+
+paper-icon-button.logoutBtn {
+	color: #4184F3;
+}
+
+/* Paper card Styling Demo */
+#cards {
+  margin: 0 auto;
+  /*background: #dedede;*/
+  background: #F1F1F1;
+  overflow: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+paper-card {
+  /*width: 380px;*/
+  width: 100%;
+  margin: 8px auto;
+}
+
+paper-card [autofocus] {
+  color: #ff9c33;
+}
+
+paper-button {
+  font-size: 14px;
+}
+
+paper-card::shadow .fancy .title {
+  position: absolute;
+  top: 30px;
+  left: 100px;
+}
+
+paper-card::shadow .fancy img {
+  width: 100%;
+}
+
+paper-card::shadow .fancy .small {
+  font-size: 1em;
+  padding-bottom: 0.8em;
+}
+
+paper-card::shadow .header img {
+  
+}
+
+paper-card::shadow .header h1 {
+  font-size: 18px;
+  color: #CC181E !important;
+}
+
+paper-card .card-h5 h5 {
+  margin-top: 0;
+  margin-bottom: 0.4em;
+  font-size: 16px;
+  color: #CC181E !important;
+}
+
+paper-card .card-h5-single h5 {
+  margin-top: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 16px;
+  color: #CC181E !important;
+}
+
+paper-card .card-h5 h5 a {
+  color: #CC181E !important;
+  text-decoration: none;
+}
+
+paper-card .small-txt {
+  font-size: 14px;
+  color: #444;
+}
+
+.core-icon-style core-icon {
+  /*color: #CC181E;*/
+  color: #444;
+}
+
+/** Spinner Styles **/
+.loader {
+  margin: 5em auto;
+}
+.loader--audioWave {
+  width: 3em;
+  height: 2em;
+  background: linear-gradient(#2A61B7, #2A61B7) 0 50%, linear-gradient(#2A61B7, #2A61B7) 0.625em 50%, linear-gradient(#2A61B7, #2A61B7) 1.25em 50%, linear-gradient(#2A61B7, #2A61B7) 1.875em 50%, linear-gradient(#2A61B7, #2A61B7) 2.5em 50%;
+  background-repeat: no-repeat;
+  background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+  animation: audioWave 1.5s linear infinite;
+}
+@keyframes audioWave {
+  25% {
+    background: linear-gradient(#d23f31, #d23f31) 0 50%, linear-gradient(#2A61B7, #2A61B7) 0.625em 50%, linear-gradient(#2A61B7, #2A61B7) 1.25em 50%, linear-gradient(#2A61B7, #2A61B7) 1.875em 50%, linear-gradient(#2A61B7, #2A61B7) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+  }
+  37.5% {
+    background: linear-gradient(#2A61B7, #2A61B7) 0 50%, linear-gradient(#d23f31, #d23f31) 0.625em 50%, linear-gradient(#2A61B7, #2A61B7) 1.25em 50%, linear-gradient(#2A61B7, #2A61B7) 1.875em 50%, linear-gradient(#2A61B7, #2A61B7) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+  }
+  50% {
+    background: linear-gradient(#2A61B7, #2A61B7) 0 50%, linear-gradient(#2A61B7, #2A61B7) 0.625em 50%, linear-gradient(#d23f31, #d23f31) 1.25em 50%, linear-gradient(#2A61B7, #2A61B7) 1.875em 50%, linear-gradient(#2A61B7, #2A61B7) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em;
+  }
+  62.5% {
+    background: linear-gradient(#2A61B7, #2A61B7) 0 50%, linear-gradient(#2A61B7, #2A61B7) 0.625em 50%, linear-gradient(#2A61B7, #2A61B7) 1.25em 50%, linear-gradient(#d23f31, #d23f31) 1.875em 50%, linear-gradient(#2A61B7, #2A61B7) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em;
+  }
+  75% {
+    background: linear-gradient(#2A61B7, #2A61B7) 0 50%, linear-gradient(#2A61B7, #2A61B7) 0.625em 50%, linear-gradient(#2A61B7, #2A61B7) 1.25em 50%, linear-gradient(#2A61B7, #2A61B7) 1.875em 50%, linear-gradient(#d23f31, #d23f31) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em;
+  }
+}
