@@ -29,4 +29,5 @@ You will need a web server to run the bhu-vplayer sample app. You can just drop 
 3. To improve the performance of the app, you will have to use the vulcanize tool provided by the Polymer team to in-line all the elements used in the app. This will reduce the HTTP request give improved performance. To install vulcanize, simply use npm:
 ```npm -g install vulcanize```
 now to vulcanize the app, run:
-```vulcanize --inline-scripts --inline-css index.html```. You will have a **vulcanize.html** file which is the optimized version you can use for your demos.
+```mv index.html index.html.old```
+```vulcanize --inline-scripts --inline-css index.html.old -o index.html```. You will have a new index.html file which is the optimized version you can use for your demos.
