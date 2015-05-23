@@ -8,7 +8,7 @@
       showSearchField: function(){
         this.$.newSearchField.style.display = 'block';
       },
-      clientId: '514947288328-hf8e521mq1pjfg35jv5al4cjtih1v63c.apps.googleusercontent.com',
+      clientId: '<CLIENT_ID From Developer Console>',
       login: false,
       logout: true,
       rpathCount: false,
