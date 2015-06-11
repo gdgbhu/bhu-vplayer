@@ -1,5 +1,5 @@
 # bhu-vplayer
-A Sample Youtube Video Player created with Polymer 0.5+ by GDG Bingham University
+A Sample Youtube Video Player created with Polymer by GDG Bingham University
 
 # Installation
 You will need to have bower installed on your computer. If you don't have bower installed, simply install Node.js and run:
