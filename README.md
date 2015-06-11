@@ -1,7 +1,10 @@
-# bhu-vplayer
+### bhu-vplayer
 A Sample Youtube Video Player created with Polymer by GDG Bingham University
 
-# Installation
+### Demo
+[BHU VPlayer](http://bhu.gdg.ng/dm)
+
+### Installation
 You will need to have bower installed on your computer. If you don't have bower installed, simply install Node.js and run:
 
 ```npm -g install bower```
@@ -18,10 +21,10 @@ Before you can run the application, you need to create your Client ID from the G
 4. Copy the Client ID and replace the placeholder text in **app/elements/bhu-vplayer/bhu-vplayer.js**
 
 
-#Running bhu-vplayer App
+### Running bhu-vplayer App
 You will need a web server to run the bhu-vplayer sample app. You can just drop the application directory into your Document Root or for those that have Python Installed, you can boot up a the Simple HTTP server by running ``` python -m SimpleHTTPServer ```
 
-#Note: 
+### Note: 
 
 
 1. If you have a port number attached to you development URL, you need to ensure that it is part of your Authorized JavaScript origins in Google Developer Console i.e. **http://dev.bhu.gdg.ng:3000**
